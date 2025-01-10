@@ -1,0 +1,12 @@
+Device Number: 0
+  Device name: Tesla K20m
+  Memory Clock Rate (KHz): 2600000
+  Memory Bus Width (bits): 320
+  Peak Memory Bandwidth (GB/s): 208.000000
+
+Device Number: 1
+  Device name: Tesla K20m
+  Memory Clock Rate (KHz): 2600000
+  Memory Bus Width (bits): 320
+  Peak Memory Bandwidth (GB/s): 208.000000
+

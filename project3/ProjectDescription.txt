@@ -1,0 +1,50 @@
+Project 3:
+**** CUDA Programming for the fluid solver ****
+
+
+In this project you are going to accelerate the fluid solver that we
+previously parallelized with OpenMP utilizing the CUDA programming
+model for NVIDIA GPGPUs.  Note, for this project we will be utilizing
+the *scout* cluster instead of the shadow cluster.  This cluster
+provides a few nodes with NVIDIA K20 GPGPU coprocessors.  The provided
+runscripts will allow you to submit jobs to the cluster for GPGPU
+execution using the sbatch command with the provided job script files
+such as the file "runfluid32.js".  
+
+
+Since the code is utilizing a co-processor that has separate memory
+independent from the CPU memory, the execution of kernels will require
+copying data back and forth between the CPU and GPGPU.  You should
+develop kernels in an incremental fashion so that you can debug them
+one by one.  As with the OpenMP version, you should verify that the
+code produces the same results each step of the way.  When the code is
+completely ported to GPGPU kernels, then it will be possible to
+generate the initial conditions and evolve the solution variables
+entirely on the GPGPU without copying data back and forth between the
+CPU and GPGPU.  This will allow you to get the highest performance.
+When you have successfully implemented all of the fluid solver
+operations on the GPGPU the code should run significantly faster than
+the original serial version.  You should be able to get run times
+where it only requires about 20 nanoseconds per cell per timestep to
+solve the fluid problem (at least on the larger meshes).  
+
+
+The GPGPU utilized in this project is the NVIDIA Tesla K20 GPGPU.  The
+cores of this GPGPU run at a clock speed of 706 Mhz.  The K20 consist
+of 13 Stream Multiprocessors (SMs), each with 192 CUDA cores (that
+execute individual threads) for a total of 192*13=2496 CUDA cores.
+Assuming each CUDA core can launch two single precision floating point
+operations in a single clock cycles, what is the peak floating point
+performance that can be achieved by the K20 GPGPU?  The K20 also has a
+memory bandwidth of 205 Gigabytes per second.  Based on memory
+bandwidth what is the peak performance that can be obtained from the
+fluid solver?
+
+In your report you should document the strategies that you used in the
+development of your GPGPU kernel functions and also record the
+performance effects of changing grid sizes on the execution of the
+program.  Do larger meshes exhibit higher performance?  Does the
+program saturate the memory bandwidth of the GPGPU?  Does it saturate
+the compute capacity of the GPGPU?  Answer these questions in your
+report.
+
